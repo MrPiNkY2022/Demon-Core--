@@ -1,0 +1,13 @@
+// hardhat.config.js (root)
+require("@nomicfoundation/hardhat-toolbox");
+
+module.exports = {
+  solidity: "0.8.20",
+  networks: {
+    hardhat: {},
+    sepolia: { // Testnet example
+      url: "https://sepolia.infura.io/v3/YOUR_INFURA_KEY",
+      accounts: ["YOUR_PRIVATE_KEY"] // Never commit real keys!
+    }
+  }
+};

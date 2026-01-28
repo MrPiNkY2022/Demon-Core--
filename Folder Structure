@@ -1,0 +1,38 @@
+Demon-Core-🔱-2026/
+├── README.md
+├── SECURITY.md
+├── CONTRIBUTING.md
+├── CHANGELOG.md
+├── LICENSE
+├── .gitignore
+├── app/
+│   ├── build.gradle.kts
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/demoncore/soultracker/
+│   │   │   │   ├── MainActivity.kt
+│   │   │   │   ├── ui/
+│   │   │   │   │   ├── DashboardFragment.kt
+│   │   │   │   │   ├── MintWizardFragment.kt
+│   │   │   │   │   ├── NameKarmaStepFragment.kt
+│   │   │   │   │   ├── AuraScanStepFragment.kt
+│   │   │   │   │   ├── WalletSignStepFragment.kt
+│   │   │   │   │   └── ConfirmMintStepFragment.kt
+│   │   │   │   └── core/
+│   │   │   │       └── CriticalityEngine.kt
+│   │   │   └── res/
+│   │   │       ├── layout/
+│   │   │       │   ├── activity_main.xml
+│   │   │       │   └── fragment_dashboard.xml
+│   │   └── test/           (optional empty folder)
+├── contracts/
+│   ├── SoulContract.sol
+│   ├── AuraContract.sol
+│   └── MultiverseLinker.sol
+├── backend/
+│   ├── src/
+│   │   └── main.rs         (Axum example)
+│   └── Cargo.toml
+└── rust/
+    └── src/
+        └── shamir.rs

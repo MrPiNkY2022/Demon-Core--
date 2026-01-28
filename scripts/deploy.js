@@ -66,3 +66,27 @@ main()
     console.error(error);
     process.exit(1);
   });
+
+// ... existing main() ...
+
+async function main() {
+  // Deploy SoulContract
+  const SoulContract = await hre.ethers.getContractFactory("SoulContract");
+  const soulContract = await SoulContract.deploy();
+  await soulContract.waitForDeployment();
+  console.log("SoulContract:", await soulContract.getAddress());
+
+  // Deploy KarmaOracle
+  const KarmaOracle = await hre.ethers.getContractFactory("KarmaOracle");
+  const karmaOracle = await KarmaOracle.deploy(await soulContract.getAddress());
+  await karmaOracle.waitForDeployment();
+  console.log("KarmaOracle:", await karmaOracle.getAddress());
+
+  // Deploy ReincarnationRegistry
+  const ReincarnationRegistry = await hre.ethers.getContractFactory("ReincarnationRegistry");
+  const registry = await ReincarnationRegistry.deploy();
+  await registry.waitForDeployment();
+  console.log("ReincarnationRegistry:", await registry.getAddress());
+
+  // Mint genesis as before...
+}

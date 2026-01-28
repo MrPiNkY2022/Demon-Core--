@@ -26,3 +26,11 @@ yarn-error.log*
 
 # Environment files (local configs)
 /.env.*
+
+
+# Update .gitignore
+.env
+backend/.env
+node_modules/
+contracts/artifacts/
+contracts/cache/

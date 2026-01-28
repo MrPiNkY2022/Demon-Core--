@@ -1,0 +1,20 @@
+CriticalityEngine key derivation pipeline (2026-01)
+
+Inputs (concatenated → Keccak256 pre-hash):
+  1. karma balance (int256 as big-endian bytes)
+  2. aura entropy (double * 1e9 truncated to uint64)
+  3. wallet address keccak hash (last 8 bytes)
+  4. device-bound secret (from Android Keystore HMAC-SHA512)
+  5. current unix timestamp (ms) XOR 0xDEADC0DECAFEBABE
+
+Hash output (32 bytes) → Argon2id (time=4, mem=64MiB, parallelism=4)
+  → 32-byte master key
+
+ChaCha20Poly1305 (key = master[0..32], nonce = OsRng 12 bytes)
+  → encrypt dummy payload "DEMON CORE ACTIVE"
+
+Final criticality score = Shannon entropy of ciphertext[0..16] normalized [0,1]
+                       + temporal bias ((ts % 86400) / 86400 * 0.07)
+                       ^ golden ratio (1.618)
+
+Goal: make replays and pre-computation extremely expensive

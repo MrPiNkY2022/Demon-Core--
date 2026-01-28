@@ -1,0 +1,45 @@
+<!-- app/src/main/res/navigation/nav_graph.xml - Navigation graph for fragments -->
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.demoncore.soultracker.ui.DashboardFragment"
+        android:label="Dashboard" />
+
+    <fragment
+        android:id="@+id/scanFragment"
+        android:name="com.demoncore.soultracker.ui.AuraScanFragment"
+        android:label="Soul Scan" />
+
+    <fragment
+        android:id="@+id/auraFragment"
+        android:name="com.demoncore.soultracker.ui.AuraFragment"  <!-- New or existing Aura detail -->
+        android:label="Aura Analysis" />
+
+    <fragment
+        android:id="@+id/karmaFragment"
+        android:name="com.demoncore.soultracker.ui.KarmaFragment"
+        android:label="Karma" />
+
+    <fragment
+        android:id="@+id/chakraFragment"
+        android:name="com.demoncore.soultracker.ui.ChakraFragment"
+        android:label="Chakras" />
+
+    <fragment
+        android:id="@+id/reincarnationFragment"
+        android:name="com.demoncore.soultracker.ui.ReincarnationViewerFragment"
+        android:label="Reincarnation" />
+
+    <fragment
+        android:id="@+id/walletFragment"
+        android:name="com.demoncore.soultracker.ui.WalletConnectFragment"
+        android:label="Wallet" />
+
+    <!-- Add more as needed, e.g., mint, settings -->
+
+</navigation>

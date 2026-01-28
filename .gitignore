@@ -34,3 +34,19 @@ backend/.env
 node_modules/
 contracts/artifacts/
 contracts/cache/
+
+
+# Crypto & secrets
+keys/
+*.pem
+*.key
+*.jks
+*.keystore
+pinata-jwt.txt
+infura-key.txt
+walletconnect-project-id.txt
+
+# Native build artifacts
+**/build/rust/
+**/libcriticality.so
+**/target/

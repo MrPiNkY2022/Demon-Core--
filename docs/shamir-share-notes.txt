@@ -1,0 +1,14 @@
+Shamir Secret Sharing plan for mnemonic (if ever stored)
+
+Total shares: 5
+Threshold: 3
+
+Share distribution targets:
+  1. Primary EncryptedSharedPreferences (app-private)
+  2. Secondary device keystore blob
+  3. Trusted cloud HSM (GCP KMS or AWS KMS)
+  4. Physical paper backup (QR code split across pages)
+  5. Trusted friend/family member's device (via secure transfer)
+
+Reconstruction only happens inside secure enclave / TEE
+Never reconstruct full seed on main CPU

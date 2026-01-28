@@ -15,6 +15,10 @@ import com.google.android.material.card.MaterialCardView
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import kotlinx.coroutines.launch
 import java.math.BigInteger
+import com.airbnb.lottie.LottieAnimationView
+import android.os.Vibrator
+import android.os.VibrationEffect
+import android.content.Context.VIBRATOR_SERVICE
 
 class DashboardFragment : Fragment() {
 
@@ -73,5 +77,25 @@ class DashboardFragment : Fragment() {
                 }
             )
         }
+
+   private fun updateCriticality(criticality: CriticalitySimulator.CriticalityEvent) {
+               val lottie = view?.findViewById<LottieAnimationView>(R.id.lottie_criticality)
+    lottie?.apply {
+        when (criticality.level) {
+            in 3..4 -> {
+                setAnimation(R.raw.criticality_high)  // red pulsing ring
+                playAnimation()
+                // Vibrate
+                val vibrator = requireContext().getSystemService(VIBRATOR_SERVICE) as Vibrator
+                if (vibrator.hasVibrator()) {
+                    vibrator.vibrate(VibrationEffect.createWaveform(longArrayOf(0, 300, 100, 300), -1))
+                }
+            }
+            else -> {
+                setAnimation(R.raw.criticality_low)   // calm blue
+                playAnimation()
+            }
+        }
     }
+    tvCriticality.text = criticality.message
 }

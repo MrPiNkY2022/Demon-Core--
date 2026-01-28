@@ -1,0 +1,79 @@
+<!-- app/src/main/res/layout/fragment_chakra.xml -->
+<!-- Layout for Chakra visualization with progress bars -->
+
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0D001A">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_chakra_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chakra Alignment Matrix 🔱"
+            android:textSize="28sp"
+            android:textColor="#00FFFF"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="32dp" />
+
+        <TextView
+            android:id="@+id/tv_chakra_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Scanning energy centers..."
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/tv_chakra_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="24dp" />
+
+        <!-- Chakra Progress Bars -->
+        <TextView android:id="@+id/label_root" android:text="Root (Muladhara)" android:textColor="#FF5722" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@id/tv_chakra_status" app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="32dp"/>
+        <ProgressBar android:id="@+id/pb_root_chakra" style="@android:style/Widget.ProgressBar.Horizontal" android:layout_width="0dp" android:layout_height="wrap_content" android:progressDrawable="@drawable/progress_root" app:layout_constraintTop_toBottomOf="@id/label_root" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView android:id="@+id/label_sacral" android:text="Sacral (Svadhisthana)" android:textColor="#FF9800" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@id/pb_root_chakra" app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="16dp"/>
+        <ProgressBar android:id="@+id/pb_sacral_chakra" style="@android:style/Widget.ProgressBar.Horizontal" android:layout_width="0dp" android:layout_height="wrap_content" android:progressDrawable="@drawable/progress_sacral" app:layout_constraintTop_toBottomOf="@id/label_sacral" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- Repeat for Solar, Heart, Throat, Third Eye, Crown with appropriate colors and IDs -->
+
+        <TextView android:id="@+id/label_solar" android:text="Solar Plexus (Manipura)" android:textColor="#FFEB3B" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@id/pb_sacral_chakra" app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="16dp"/>
+        <ProgressBar android:id="@+id/pb_solar_chakra" style="@android:style/Widget.ProgressBar.Horizontal" android:layout_width="0dp" android:layout_height="wrap_content" android:progressDrawable="@drawable/progress_solar" app:layout_constraintTop_toBottomOf="@id/label_solar" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView android:id="@+id/label_heart" android:text="Heart (Anahata)" android:textColor="#4CAF50" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@id/pb_solar_chakra" app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="16dp"/>
+        <ProgressBar android:id="@+id/pb_heart_chakra" style="@android:style/Widget.ProgressBar.Horizontal" android:layout_width="0dp" android:layout_height="wrap_content" android:progressDrawable="@drawable/progress_heart" app:layout_constraintTop_toBottomOf="@id/label_heart" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView android:id="@+id/label_throat" android:text="Throat (Vishuddha)" android:textColor="#03A9F4" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@id/pb_heart_chakra" app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="16dp"/>
+        <ProgressBar android:id="@+id/pb_throat_chakra" style="@android:style/Widget.ProgressBar.Horizontal" android:layout_width="0dp" android:layout_height="wrap_content" android:progressDrawable="@drawable/progress_throat" app:layout_constraintTop_toBottomOf="@id/label_throat" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView android:id="@+id/label_third_eye" android:text="Third Eye (Ajna)" android:textColor="#9C27B0" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@id/pb_throat_chakra" app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="16dp"/>
+        <ProgressBar android:id="@+id/pb_third_eye_chakra" style="@android:style/Widget.ProgressBar.Horizontal" android:layout_width="0dp" android:layout_height="wrap_content" android:progressDrawable="@drawable/progress_third_eye" app:layout_constraintTop_toBottomOf="@id/label_third_eye" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView android:id="@+id/label_crown" android:text="Crown (Sahasrara)" android:textColor="#FFFFFF" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@id/pb_third_eye_chakra" app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="16dp"/>
+        <ProgressBar android:id="@+id/pb_crown_chakra" style="@android:style/Widget.ProgressBar.Horizontal" android:layout_width="0dp" android:layout_height="wrap_content" android:progressDrawable="@drawable/progress_crown" app:layout_constraintTop_toBottomOf="@id/label_crown" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_refresh_chakra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Refresh Alignment (On-Chain)"
+            android:backgroundTint="#800080"
+            app:layout_constraintTop_toBottomOf="@id/pb_crown_chakra"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="64dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

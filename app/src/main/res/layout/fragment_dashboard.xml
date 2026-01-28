@@ -24,16 +24,19 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="32dp" />
 
-        <!-- Criticality Gauge -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_criticality"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="#1A0033"
-            app:layout_constraintTop_toBottomOf="@id/tv_dashboard_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="24dp">
+        <!-- Replace the old CircularProgressIndicator with this -->
+<com.airbnb.lottie.LottieAnimationView
+    android:id="@+id/lottie_criticality"
+    android:layout_width="140dp"
+    android:layout_height="140dp"
+    app:lottie_rawRes="@raw/criticality_ring"           <!-- add raw/criticality_ring.json from LottieFiles -->
+    app:lottie_autoPlay="false"
+    app:lottie_loop="true"
+    app:layout_constraintTop_toBottomOf="@id/tv_criticality_label"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginTop="16dp" />
+        
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -185,7 +188,6 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Add more cards as needed -->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

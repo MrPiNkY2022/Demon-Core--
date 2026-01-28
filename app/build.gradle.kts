@@ -4,7 +4,25 @@
 // app/build.gradle.kts - Add Jetpack Navigation and Material3 dependencies (append to existing)
 
 dependencies {
-    // ... existing dependencies ...
+    // Lottie animations
+    implementation("com.airbnb.android:lottie:6.5.2")
+
+    // Pull-to-refresh
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
+
+    // ExoPlayer for chakra sound bath
+    implementation("com.google.android.exoplayer:exoplayer:2.19.1")
+    implementation("com.google.android.exoplayer:exoplayer-ui:2.19.1")
+
+    // Coil for IPFS image loading
+    implementation("io.coil-kt:coil-compose:2.7.0")
+
+    // WorkManager for background event listening & notifications
+    implementation("androidx.work:work-runtime-ktx:2.9.1")
+
+    // Vibrator (already in AndroidX, no extra dep needed)
+}
+    
 
     // Jetpack Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.0")

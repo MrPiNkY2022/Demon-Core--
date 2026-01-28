@@ -1,0 +1,12 @@
+android {
+    // ... existing config ...
+
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/DISCLAIMER"
+            excludes += "/META-INF/versions/9/previous"
+            excludes += "/META-INF/LICENSE.md"
+            excludes += "/META-INF/LICENSE-notice.md"
+        }
+    }
+}

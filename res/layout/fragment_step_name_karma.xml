@@ -1,0 +1,46 @@
+<!-- res/layout/fragment_step_name_karma.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Step 1: Soul Identity"
+        android:textSize="24sp"
+        android:textColor="#FF00FF"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Give your soul a name and set its starting karmic balance."
+        android:textSize="16sp"
+        android:textColor="#AAAAAA"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/et_soul_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Soul Name (e.g., Eternal Flame)"
+        android:textColor="#FFFFFF"
+        android:hintTextColor="#888888"
+        android:backgroundTint="#FF00FF"
+        android:layout_marginTop="32dp" />
+
+    <EditText
+        android:id="@+id/et_initial_karma"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Initial Karma Balance (e.g., 42)"
+        android:inputType="numberSigned"
+        android:textColor="#FFFFFF"
+        android:hintTextColor="#888888"
+        android:backgroundTint="#00FFFF"
+        android:layout_marginTop="24dp" />
+
+</LinearLayout>

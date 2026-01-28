@@ -1,0 +1,7 @@
+<!-- res/layout/fragment_settings.xml -->
+<LinearLayout ...>
+    <TextView android:text="Astral Settings" ... />
+    <SwitchMaterial
+        android:id="@+id/switch_dark_mode"
+        android:text="Astral Night Mode (Dark Theme)" />
+</LinearLayout>

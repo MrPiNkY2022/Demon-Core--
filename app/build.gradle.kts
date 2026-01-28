@@ -1,9 +1,22 @@
 // Update to app/build.gradle.kts - Add blockchain integration dependencies
 // Add these to the dependencies block (replace or append existing
 // Add to app/build.gradle.kts dependencies block for new features
+// app/build.gradle.kts - Add Jetpack Navigation and Material3 dependencies (append to existing)
 
 dependencies {
-    // ... existing ...
+    // ... existing dependencies ...
+
+    // Jetpack Navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.8.0")
+
+    // Material3 for modern UI (already partially there, ensure latest)
+    implementation("com.google.android.material:material:1.12.0")
+
+    // Lifecycle ViewModel for shared state
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.0")
+}
 
     // WalletConnect v2 for Android (latest as of 2026)
     implementation("com.walletconnect:android-core:1.0.0-betaXX") // Check https://docs.walletconnect.com for exact version; use latest stable

@@ -1,0 +1,24 @@
+<!-- app/src/main/res/menu/bottom_nav_menu.xml - Bottom navigation items -->
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@drawable/ic_dashboard"
+        android:title="Dashboard" />
+    <item
+        android:id="@+id/nav_scan"
+        android:icon="@drawable/ic_scan"
+        android:title="Scan" />
+    <item
+        android:id="@+id/nav_aura"
+        android:icon="@drawable/ic_aura"
+        android:title="Aura" />
+    <item
+        android:id="@+id/nav_karma"
+        android:icon="@drawable/ic_karma"
+        android:title="Karma" />
+    <item
+        android:id="@+id/nav_more"
+        android:icon="@drawable/ic_more"
+        android:title="More" />
+</menu>

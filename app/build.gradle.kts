@@ -2,7 +2,10 @@
 // Add these to the dependencies block (replace or append existing)
 
 dependencies {
-    // ... existing dependencies ...
+    implementation("org.web3j:core:4.12.0") // Web3j for Ethereum
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1") // For suspend functions
+    implementation("org.web3j:abi:4.12.0") // ABI utils
+}
 
     // Web3j for Ethereum integration (Android-compatible version)
     implementation("org.web3j:core:4.12.0") // Use 4.12.0 or latest Android-friendly release

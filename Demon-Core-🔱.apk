@@ -1,0 +1,316 @@
+// app/src/main/java/com/demoncore/soultracker/MainActivity.kt
+// Genius-tier Compose-based entry point with Orbit-MVI, dynamic theming, haptic feedback,
+// criticality engine integration, and adaptive UI for 2026 metaphysical DApp standards
+
+package com.demoncore.soultracker
+
+import android.os.Bundle
+import android.view.HapticFeedbackConstants
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.*
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.demoncore.soultracker.core.CriticalityEngine
+import com.demoncore.soultracker.ui.theme.DemonCoreTheme
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import org.orbitmvi.orbit.compose.collectAsState
+import org.orbitmvi.orbit.compose.collectSideEffect
+
+class MainActivity : ComponentActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
+        enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
+
+        setContent {
+            DemonCoreTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    DemonCoreApp()
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun DemonCoreApp(
+    viewModel: DemonCoreViewModel = viewModel()
+) {
+    val state by viewModel.collectAsState()
+    val sideEffects = viewModel.collectSideEffect()
+
+    val haptic = LocalHapticFeedback.current
+    val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
+
+    LaunchedEffect(state.criticalityLevel) {
+        if (state.criticalityLevel > 0.92f) {
+            haptic.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+            CriticalityEngine.onSupercritical() // Native wipe if supercritical
+            coroutineScope.launch {
+                delay(500)
+                // Show supercritical dialog or navigate to "evacuation" screen
+            }
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        viewModel.refreshAllData()
+    }
+
+    BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+        val maxWidth = maxWidth
+        val maxHeight = maxHeight
+
+        // Background astral gradient with subtle blur
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    brush = Brush.radialGradient(
+                        colors = listOf(
+                            Color(0xFF0D001A),
+                            Color(0xFF1A0033),
+                            Color.Black
+                        )
+                    )
+                )
+                .blur(8.dp)
+        )
+
+        // Floating criticality orb
+        AnimatedVisibility(
+            visible = state.criticalityLevel > 0.5f,
+            enter = scaleIn() + fadeIn(),
+            exit = scaleOut() + fadeOut(),
+            modifier = Modifier.align(Alignment.TopCenter)
+        ) {
+            Box(
+                modifier = Modifier
+                    .padding(top = 64.dp)
+                    .size(120.dp)
+                    .scale(1f + state.criticalityLevel * 0.3f)
+                    .clip(CircleShape)
+                    .background(
+                        brush = Brush.radialGradient(
+                            colors = listOf(
+                                Color.Red.copy(alpha = state.criticalityLevel),
+                                Color.Transparent
+                            )
+                        )
+                    )
+            ) {
+                Text(
+                    text = "${(state.criticalityLevel * 100).toInt()}%",
+                    modifier = Modifier.align(Alignment.Center),
+                    color = Color.White,
+                    fontSize = 32.sp,
+                    fontWeight = FontWeight.Black
+                )
+            }
+        }
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = "DEMON CORE 🔱",
+                style = MaterialTheme.typography.displayLarge,
+                color = MaterialTheme.colorScheme.primary,
+                fontWeight = FontWeight.Black,
+                letterSpacing = 2.sp
+            )
+
+            Spacer(modifier = Modifier.height(48.dp))
+
+            // Karma & Aura dual card
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                ElevatedCard(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(end = 8.dp),
+                    colors = CardDefaults.elevatedCardColors(
+                        containerColor = Color(0xFF1A0033).copy(alpha = 0.8f)
+                    )
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text("Karma Balance", color = Color.White)
+                        Text(
+                            text = "${state.karma}",
+                            style = MaterialTheme.typography.headlineMedium,
+                            color = if (state.karma >= 0) Color.Green else Color.Red
+                        )
+                    }
+                }
+
+                ElevatedCard(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(start = 8.dp),
+                    colors = CardDefaults.elevatedCardColors(
+                        containerColor = Color(0xFF1A0033).copy(alpha = 0.8f)
+                    )
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text("Aura Level", color = Color.White)
+                        Text(
+                            text = "${state.auraLevel}%",
+                            style = MaterialTheme.typography.headlineMedium,
+                            color = state.auraColor
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            // Wallet status
+            if (state.walletAddress != null) {
+                Text(
+                    text = "Connected: ${state.walletAddress?.take(6)}...${state.walletAddress?.takeLast(4)}",
+                    color = Color(0xFFAAAAAA),
+                    fontSize = 14.sp
+                )
+            } else {
+                Button(onClick = { viewModel.connectWallet() }) {
+                    Text("Connect Wallet")
+                }
+            }
+
+            Spacer(modifier = Modifier.height(48.dp))
+
+            // Mint button with pulse animation
+            val infiniteTransition = rememberInfiniteTransition(label = "pulse")
+            val pulseScale by infiniteTransition.animateFloat(
+                initialValue = 1f,
+                targetValue = 1.08f,
+                animationSpec = infiniteRepeatable(
+                    animation = tween(1200),
+                    repeatMode = RepeatMode.Reverse
+                ),
+                label = "pulse"
+            )
+
+            Button(
+                onClick = { viewModel.mintSoul() },
+                modifier = Modifier
+                    .scale(pulseScale)
+                    .height(64.dp)
+                    .fillMaxWidth(0.8f),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFFD500F9)
+                )
+            ) {
+                Text("Mint New Soul", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+            }
+        }
+    }
+
+    // Side effects handling
+    LaunchedEffect(sideEffects) {
+        sideEffects.collect { effect ->
+            when (effect) {
+                is DemonCoreSideEffect.ShowToast -> {
+                    Toast.makeText(context, effect.message, Toast.LENGTH_LONG).show()
+                }
+                is DemonCoreSideEffect.NavigateToMint -> {
+                    // Navigate to mint wizard
+                }
+            }
+        }
+    }
+}
+
+// ViewModel with Orbit-MVI (genius state management)
+class DemonCoreViewModel : ContainerHost<DemonCoreState, DemonCoreSideEffect>, ViewModel() {
+
+    override val container = container<DemonCoreState, DemonCoreSideEffect>(
+        DemonCoreState()
+    )
+
+    init {
+        // Auto-refresh criticality on init
+        intent { reduce { state.copy(isLoading = true) } }
+        // Simulate load
+        intent {
+            delay(1500)
+            val crit = CriticalityEngine.computeCriticality(
+                karma = state.karma.toLong(),
+                auraEntropy = state.auraLevel / 100.0,
+                walletAddressHash = state.walletAddress.hashCode().toLong()
+            )
+            reduce { state.copy(criticalityLevel = crit, isLoading = false) }
+        }
+    }
+
+    fun refreshAllData() = intent {
+        // Fetch from blockchain, AI, etc.
+        reduce { state.copy(karma = (0..200) - 100, auraLevel = (40..90).random()) }
+    }
+
+    fun connectWallet() = intent {
+        // WalletConnect flow
+        postSideEffect(DemonCoreSideEffect.ShowToast("Connecting wallet..."))
+    }
+
+    fun mintSoul() = intent {
+        postSideEffect(DemonCoreSideEffect.NavigateToMint)
+    }
+}
+
+data class DemonCoreState(
+    val karma: Int = 42,
+    val auraLevel: Int = 77,
+    val auraColor: Color = Color.Magenta,
+    val walletAddress: String? = null,
+    val criticalityLevel: Double = 0.42,
+    val isLoading: Boolean = false
+)
+
+sealed class DemonCoreSideEffect {
+    data class ShowToast(val message: String) : DemonCoreSideEffect()
+    object NavigateToMint : DemonCoreSideEffect()
+}

@@ -1,3 +1,12 @@
+// In onCreate, for auraButton or new chakra button
+val chakraButton: Button = findViewById(R.id.btn_chakra) // Add this button in activity_main.xml if needed
+chakraButton.setOnClickListener {
+    supportFragmentManager.commit {
+        replace(R.id.fragment_container, ChakraFragment())
+        addToBackStack(null)
+    }
+}
+
 package com.demoncore.soultracker
 
 import android.os.Bundle

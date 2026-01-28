@@ -1,0 +1,40 @@
+// app/src/main/java/com/demoncore/soultracker/blockchain/SoulBlockchainManager.kt
+
+package com.demoncore.soultracker.blockchain
+
+import org.web3j.abi.FunctionEncoder
+import org.web3j.abi.TypeReference
+import org.web3j.abi.datatypes.Function
+import org.web3j.abi.datatypes.generated.Uint256
+import org.web3j.protocol.Web3j
+import org.web3j.protocol.core.DefaultBlockParameterName
+import org.web3j.protocol.core.methods.response.EthGetBalance
+import org.web3j.protocol.http.HttpService
+import java.math.BigInteger
+
+object SoulBlockchainManager {
+    private const val INFURA_URL = "https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID" // Replace with your key
+    private val web3j: Web3j = Web3j.build(HttpService(INFURA_URL))
+
+    // Placeholder contract address (deploy your SoulContract and update)
+    private const val SOUL_CONTRACT_ADDRESS = "0xYourDeployedSoulContractAddress"
+
+    // Example: Get ETH balance of an address (for wallet check)
+    suspend fun getBalance(address: String): BigInteger? {
+        val response: EthGetBalance = web3j.ethGetBalance(address, DefaultBlockParameterName.LATEST).sendAsync().get()
+        return if (response.hasError()) null else response.balance
+    }
+
+    // Placeholder for minting a soul token (call safeMint on contract)
+    fun generateMintData(toAddress: String): String {
+        val function = Function(
+            "safeMint",
+            listOf(org.web3j.abi.datatypes.Address(toAddress)),
+            listOf<TypeReference<*>>(object : TypeReference<Uint256>() {})
+        )
+        return FunctionEncoder.encode(function)
+    }
+
+    // More advanced: In future, use Credentials and send transaction via web3j.ethSendTransaction
+    // For security, never hardcode private keys in Android - use wallet connect or secure storage
+}

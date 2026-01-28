@@ -146,6 +146,17 @@ object SoulBlockchainManager {
         }
     }
 
+    suspend fun getPastLives(tokenId: BigInteger): List<BigInteger> = withContext(Dispatchers.IO) {
+    // Call registry contract's getPastLives(tokenId) - similar to getKarmaBalance, but return array
+    // Placeholder: implement EthCall with array return decoding
+    emptyList() // Expand with actual ABI call
+}
+
+     suspend fun getFutureLives(tokenId: BigInteger): List<BigInteger> = withContext(Dispatchers.IO) {
+    emptyList() // Similar
+}
+
+
     /**
      * Placeholder for generating encoded data for a mint transaction.
      * This should be sent from backend (with private key) or via WalletConnect.
